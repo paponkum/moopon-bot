@@ -10,9 +10,15 @@ const port = process.env.PORT;
 // Middleware to parse JSON
 app.use(express.json());
 
-// Route to handle chatbot messages
+app.get('/', (req: Request, res: Response) => {
+    res.json({
+        timestamp: new Date().toISOString()
+    });
+})
 app.get('/webhook', (req: Request, res: Response) => {
-    res.json();
+    res.json({
+        timestamp: new Date().toISOString()
+    });
 });
 
 app.post('/webhook', async (req: Request, res: Response) => {
