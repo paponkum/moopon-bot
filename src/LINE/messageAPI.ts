@@ -1,4 +1,7 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const channelAccessToken = process.env.CHANNEL_ACCESS_TOKEN;
 
@@ -15,7 +18,7 @@ export const replyMessage = async (replyToken: string, text: string) => {
         messages: [
             {
                 type: 'text',
-                text: 'ขอบคุณสำหรับข้อความของเธอนะ ด้านล่างคือข้อความของเธอใช่ไหม'
+                text: 'ขอบคุณที่คุยกับเรานะ ด้านล่างคือข้อความที่เธอต้องการบอกเราใช่ไหม'
             },
             {
                 type: 'text',

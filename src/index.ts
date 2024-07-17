@@ -11,12 +11,19 @@ const port = process.env.PORT;
 app.use(express.json());
 
 // Route to handle chatbot messages
+app.get('/webhook', (req: Request, res: Response) => {
+    res.json();
+});
+
 app.post('/webhook', async (req: Request, res: Response) => {
     const events = req.body.events;
+    console.log(events);
     const messageEvents = events.filter((event: any) => event.type == "message");
-    const messageEvent = messageEvents[0];
-    await replyMessage(messageEvent.replyToken, messageEvent.message.text);
-    res.status(200);
+    if (messageEvents.length > 0) {
+        const messageEvent = messageEvents[0];
+        await replyMessage(messageEvent.replyToken, messageEvent.message.text);
+    }
+    res.json();
 });
 
 app.listen(port, () => {
